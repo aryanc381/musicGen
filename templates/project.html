@@ -7,7 +7,250 @@
 
   <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <style>
+    :root {
+      --background-color: #0d0d0d;
+      --text-color: #ffffff;
+      --primary-color: #7f00ff;
+      --secondary-color: #1a1a1a;
+      --grey: #94938d;
+      --transition: all 0.4s ease;
+      --light: #d8dbe0;
+      --dark: #28292c;
+    }
+    body.light-mode {
+      --background-color: #ffffff;
+      --text-color: #0a0a0a;
+      --primary-color: #7f00ff;
+      --secondary-color: #f8f9fa;
+      --grey: #6c757d;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+    .page-wrapper {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .navbar {
+      width: 100%;
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 10;
+    }
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid var(--text-color);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .nav-btn.highlight {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding-top: 6rem;
+    }
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .custom-upload {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.7rem 0.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+      margin-bottom: 1rem;
+    }
+    .custom-upload:hover {
+      background: #9d00ff;
+    }
+    .progress-container {
+      position: relative;
+      width: 60%;
+      max-width: 500px;
+      height: 10px;
+      background: radial-gradient(circle, #1b2735, #090a0f);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      box-sizing: border-box;
+      border: 1px solid #313131;
+      margin: 0 auto;
+    }
+    .progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, #00f260, #0575e6);
+      border-radius: 30px;
+      animation: grow 3s ease-in-out forwards;
+    }
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      z-index: 2;
+    }
+    @keyframes grow {
+      0% { width: 0; }
+      100% { width: 40%; }
+    }
+    .chords-scrollable {
+      max-height: 150px;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid var(--grey);
+      border-radius: 10px;
+      font-size: 1rem;
+      color: var(--text-color);
+      line-height: 1.6;
+      text-align: left;
+    }
+    .download-btn {
+      padding: 0.7rem 1.5rem;
+      background: transparent;
+      border: 2px solid var(--text-color);
+      color: var(--text-color);
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .download-btn.highlight {
+      background: var(--primary-color);
+      color: white;
+    }
+    .download-btn:hover {
+      background: var(--text-color);
+      color: var(--background-color);
+    }
+    .credits-fixed {
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--grey);
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .toggle-switch {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 25px;
+      z-index: 20;
+    }
+    .switch-label {
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark);
+      border-radius: 20px;
+      cursor: pointer;
+      border: 2px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checkbox {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      transition: 0.3s;
+      background-color: var(--dark);
+    }
+    .checkbox:checked ~ .slider {
+      background-color: var(--light);
+    }
+    .slider::before {
+      content: "🌙";
+      position: absolute;
+      font-size: 14px;
+      top: 47%;
+      left: 3px;
+      transform: translateY(-50%);
+      transition: 0.3s;
+    }
+    .checkbox:checked ~ .slider::before {
+      content: "☀️";
+      left: 25px;
+    }
+  </style>
+
 </head>
 
 <body style="overflow: auto;">
@@ -16,78 +259,74 @@
   <div id="bgImageDark" class="background-image active"></div>
   <div id="bgImageLight" class="background-image"></div>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="container">
-      <div class="logo">IPPR</div>
-      <nav class="nav-links">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('about') }}">About Us</a>
-        <a href="{{ url_for('project') }}">Product</a>
-        <a href="{{ url_for('development') }}">Development</a>
-        <button class="nav-btn">Log In</button>
-        <button class="nav-btn highlight">Sign Up</button>
-      </nav>
-    </div>
-  </header>
+  <div class="page-wrapper">
 
-  <!-- Upload Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Turn Music to Magic</h1>
-
-      <form id="uploadForm" action="{{ url_for('project') }}" method="POST" enctype="multipart/form-data">
-        <label for="file-upload" class="custom-upload">Select File</label>
-        <input id="file-upload" type="file" name="image" accept="image/*" required style="display:none;">
-        <br><br>
-        <button type="submit" class="nav-btn highlight" id="uploadButton">Upload and Generate</button>
-      </form>
-
-      <!-- Progress Bar -->
-      <div class="progress-container" id="progressContainer" style="display:none; margin-top:2rem;">
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="progress-text" id="progressText">Generating...</div>
-        <div class="particles">
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-        </div>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <div class="logo">IPPR</div>
+        <nav class="nav-links">
+          <a href="{{ url_for('home') }}">Home</a>
+          <a href="{{ url_for('about') }}">About Us</a>
+          <a href="{{ url_for('project') }}">Product</a>
+          <a href="{{ url_for('development') }}">Development</a>
+          <button class="nav-btn">Log In</button>
+          <button class="nav-btn highlight">Sign Up</button>
+        </nav>
       </div>
+    </header>
 
-      {% if chords %}
-      <div class="download-section" style="margin-top:4rem;">
-        <h2 style="margin-bottom:1rem;">Generation Complete!</h2>
-        <div class="chords-box">
-          <h3>Predicted Chords:</h3>
-          <div class="chords-scrollable">
-            {{ chords }}
+    <!-- Upload Section -->
+    <section class="hero">
+      <div class="main-container hero-content">
+        <h1 class="hero-title">Turn Music to Magic</h1>
+
+        <form id="uploadForm" action="{{ url_for('project') }}" method="POST" enctype="multipart/form-data" style="margin-top: 2rem;">
+          <label for="file-upload" class="custom-upload">Select File</label>
+          <input id="file-upload" type="file" name="image" accept="image/*" required style="display:none;">
+          <br><br>
+          <button type="submit" class="nav-btn highlight" id="uploadButton">Upload and Generate</button>
+        </form>
+
+        <div class="progress-container" id="progressContainer" style="display:none; margin-top:2rem;">
+          <div class="progress-bar" id="progressBar"></div>
+          <div class="progress-text" id="progressText">Generating...</div>
+          <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
           </div>
         </div>
-        <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center;">
-          <a href="{{ url_for('static', filename='downloads/melody.mid') }}" class="download-btn" download>Download MIDI</a>
-          <a href="{{ url_for('static', filename='downloads/annotated_prediction.jpg') }}" class="download-btn highlight" download>Download Annotated Image</a>
+
+        {% if chords %}
+        <div class="download-section" style="margin-top:1rem;">
+          <p style="margin-bottom: 1rem;"><strong>Predicted Chords:</strong></p>
+          <div class="chords-scrollable">{{ chords }}</div>
+
+          <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center;">
+            <a href="{{ url_for('static', filename='downloads/melody.mid') }}" class="download-btn" download>Download MIDI</a>
+            <a href="{{ url_for('static', filename='downloads/annotated_prediction.jpg') }}" class="download-btn highlight" download>Download Annotated Image</a>
+          </div>
         </div>
+        {% endif %}
       </div>
-      {% endif %}
+    </section>
+
+    <div class="credits-fixed">
+      © 2024 Harmonify. Built by Aryan & Abdulqadir.
     </div>
-  </section>
 
-  <!-- Footer -->
-  <div class="credits-fixed">
-    © 2024 Harmonify. Built by Aryan & Abdulqadir.
-  </div>
-  <!-- Theme Toggle Switch -->
-  <div class="toggle-switch">
-    <label class="switch-label">
-      <!-- IMPORTANT: id="theme-toggle" added -->
-      <input type="checkbox" class="checkbox" id="theme-toggle">
-      <span class="slider"></span>
-    </label>
+    <div class="toggle-switch">
+      <label class="switch-label">
+        <input type="checkbox" class="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
   </div>
 
-  <!-- External Script -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
