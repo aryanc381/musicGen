@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product - Harmonify</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body style="overflow: auto;">
+
+  <!-- Background Images -->
+  <div id="bgImageDark" class="background-image active"></div>
+  <div id="bgImageLight" class="background-image"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">IPPR</div>
+      <nav class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('project') }}">Product</a>
+        <a href="{{ url_for('development') }}">Development</a>
+        <button class="nav-btn">Log In</button>
+        <button class="nav-btn highlight">Sign Up</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Upload Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Turn Music to Magic</h1>
+
+      <form id="uploadForm" action="{{ url_for('project') }}" method="POST" enctype="multipart/form-data">
+        <label for="file-upload" class="custom-upload">Select File</label>
+        <input id="file-upload" type="file" name="image" accept="image/*" required style="display:none;">
+        <br><br>
+        <button type="submit" class="nav-btn highlight" id="uploadButton">Upload and Generate</button>
+      </form>
+
+      <!-- Progress Bar -->
+      <div class="progress-container" id="progressContainer" style="display:none; margin-top:2rem;">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">Generating...</div>
+        <div class="particles">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+        </div>
+      </div>
+
+      {% if chords %}
+      <div class="download-section" style="margin-top:4rem;">
+        <h2 style="margin-bottom:1rem;">Generation Complete!</h2>
+        <div class="chords-box">
+          <h3>Predicted Chords:</h3>
+          <div class="chords-scrollable">
+            {{ chords }}
+          </div>
+        </div>
+        <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center;">
+          <a href="{{ url_for('static', filename='downloads/melody.mid') }}" class="download-btn" download>Download MIDI</a>
+          <a href="{{ url_for('static', filename='downloads/annotated_prediction.jpg') }}" class="download-btn highlight" download>Download Annotated Image</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="credits-fixed">
+    © 2024 Harmonify. Built by Aryan & Abdulqadir.
+  </div>
+  <!-- Theme Toggle Switch -->
+  <div class="toggle-switch">
+    <label class="switch-label">
+      <!-- IMPORTANT: id="theme-toggle" added -->
+      <input type="checkbox" class="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- External Script -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

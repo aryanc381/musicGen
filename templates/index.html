@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harmonify</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="{{ url_for('static', filename='testvid.mp4') }}" type="video/mp4">
+  </video>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">IPPR</div>
+      <nav class="nav-links"> 
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('project') }}">Product</a>
+        <a href="{{ url_for('development') }}">Development</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>HarmonifyAI</h1>
+      <p class="tagline">
+        A generative music composer for<span id="changing-word">everyone</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Credits Fixed at Bottom -->
+  <div class="credits-fixed">
+    <p>© 2024 Harmonify. Built by Abdul & Aryan.</p>
+  </div>
+
+
+  <!-- Theme Toggle Switch -->
+  <div class="toggle-switch">
+    <label class="switch-label">
+      <!-- IMPORTANT: id="theme-toggle" added -->
+      <input type="checkbox" class="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- External Script -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

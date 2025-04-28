@@ -1,0 +1,387 @@
+:root {
+  --background-color: #0d0d0d;
+  --text-color: #ffffff;
+  --primary-color: #00c6ff;
+  --secondary-color: #1a1a1a;
+  --grey: #94938d;
+  --transition: all 0.4s ease;
+
+  --light: #d8dbe0;
+  --dark: #28292c;
+}
+
+/* Light Mode Variables */
+body.light-mode {
+  --background-color: #ffffff;
+  --text-color: #0a0a0a;
+  --primary-color: #0d6efd;
+  --secondary-color: #f8f9fa;
+  --grey: #6c757d;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+/* Background Video */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  padding: 1.0rem 0rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: transparent;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--text-color);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.nav-btn.highlight {
+  background: var(--text-color);
+  color: var(--background-color);
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  animation: fadeSlideDown 1.2s ease forwards;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  color: var(--grey);
+  animation: fadeSlideUp 1.5s ease forwards;
+}
+
+/* Credits Fixed at Bottom */
+.credits-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--grey);
+  opacity: 0.8;
+  z-index: 5;
+  text-align: center;
+  transition: var(--transition);
+}
+
+/* Changing Word Animation */
+#changing-word {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  transition: opacity 0.5s ease;
+}
+
+/* Animations */
+@keyframes fadeSlideDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Toggle Switch Styling ====== */
+.toggle-switch {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 25px;
+  z-index: 20;
+}
+
+.switch-label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  border-radius: 20px;
+  cursor: pointer;
+  border: 2px solid var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: 0.3s;
+  background-color: var(--dark);
+}
+
+.checkbox:checked ~ .slider {
+  background-color: var(--light);
+}
+
+.slider::before {
+  content: "🌙";
+  position: absolute;
+  font-size: 14px;
+  top: 47%;
+  left: 3px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider::before {
+  content: "☀️";
+  left: 25px;
+}
+
+/* ====== About Us Styling ====== */
+
+/* About Hero Section */
+.about-hero {
+  margin-top: 80px;
+  text-align: center;
+  color: var(--text-color);
+  z-index: 2;
+}
+
+.about-hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.about-hero .tagline {
+  font-size: 1.5rem;
+  color: var(--grey);
+}
+
+/* Team Section */
+.team-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem;
+  gap: 50rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.team-cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.2px solid var(--grey);
+  border-radius: 70px;
+  padding: 4rem;
+  text-align: center;
+  width: 350px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  text-decoration: none; /* 🚀 REMOVE underline */
+  color: var(--text-color); /* 🚀 Keep normal text color */
+}
+
+.team-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(221, 206, 243, 0.4);
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0), rgba(255,255,255,0.05));
+}
+
+
+.team-card h3 {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+
+.team-card p {
+  margin-top: 0.5rem;
+  color: var(--grey);
+  font-size: 1rem;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  background-size: cover; /* Fill the circle */
+  background-position: center; /* Center image perfectly */
+  background-repeat: no-repeat;
+  border-radius: 80%;
+  margin: 0 auto 1rem auto; /* Center horizontally + bottom margin */
+  border: 1 px solid var(--text-color); /* Thicker border for bigger circle */
+  box-shadow: 0 4px 10px rgba(233, 227, 244, 0.3); /* Soft blue shadow optional */
+  transition: transform 0.3s ease;
+}
+/* Footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: var(--grey);
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.custom-upload {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s;
+  display: inline-block;
+}
+
+.custom-upload:hover {
+  background-color: #0575e6;
+}
+
+/* Remove underline and style download buttons */
+.download-btn {
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  border-radius: 25px;
+  text-decoration: none; /* ✅ remove underline */
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.download-btn.highlight {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.download-btn:hover {
+  background: var(--text-color);
+  color: var(--background-color);
+}
+
+.chords-box {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.chords-box h3 {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.chords-scrollable {
+  max-height: 150px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+
+

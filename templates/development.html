@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development - MelodyGenAI</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body class="dark-mode">
+
+<!-- Background Images -->
+<div id="bgImageDark" class="background-image active"></div>
+<div id="bgImageLight" class="background-image"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">IPPR</div>
+      <nav class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a> <!-- ✅ Home button -->
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('project') }}">Product</a>
+
+      </nav>
+    </div>
+  </header>
+
+<!-- Development Timeline Section -->
+<section class="hero">
+  <h1>Our Development Journey</h1>
+  <p>From an idea to reality: how Aryan and Abdul built MelodyGenAI.</p>
+</section>
+
+<footer class="footer">
+  © 2024 MelodyGenAI. All Rights Reserved.
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
